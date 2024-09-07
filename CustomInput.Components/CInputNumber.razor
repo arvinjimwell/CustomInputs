@@ -1,0 +1,19 @@
+@inherits InputBase<int>
+
+<div class="input-container @CssClass">
+    <input type="text" class="input" @bind="CurrentValue" placeholder="" @attributes=AdditionalAttributes />
+    <label class="label">@ChildContent</label>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    protected override bool TryParseValueFromString(string? value, out int result, out string validationErrorMessage)
+    {
+        bool isParse = Int32.TryParse(value, out int parseValue);
+        result = isParse ? parseValue : 0;
+        validationErrorMessage = isParse ? null! : "Input is not a number.";
+        return isParse;
+    }
+}

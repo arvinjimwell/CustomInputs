@@ -1,0 +1,92 @@
+
+<div class="date-input">
+    <div class="month-select">
+        <select name="months" value="@selMonth" @onchange="SetMonth">
+            @foreach(var month in months)
+            {
+                <option value="@month.Key">@month.Value</option>
+            }
+        </select>
+        <label>Month</label>
+    </div>
+
+    <div class="input">
+        <input type="text" value="@selDay" placeholder="" @oninput="SetDay" maxlength="2" />
+        <label>Day</label>
+    </div>
+
+    <div class="input">
+        <input type="text" value="@selYear" placeholder="" @oninput="SetYear" maxlength="4" />
+        <label>Year</label>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public DateTime? Date { get; set; }
+    [Parameter]
+    public EventCallback<DateTime> DateChanged { get; set; }
+
+    private SortedList<int, string> months = new();
+    private int selMonth;
+    private int selYear;
+    private int selDay;
+
+
+    protected override void OnInitialized()
+    {
+        selMonth = Date is null ? DateTime.Now.Month : Date.Value.Month;
+        selYear = Date is null ? DateTime.Now.Year : Date.Value.Year;
+        selDay = Date is null ? DateTime.Now.Day : Date.Value.Day;
+
+        foreach(int i in Enumerable.Range(1, 12))
+        {
+            months.Add(i, new DateTime(year: 1, month: i, day: 1).ToString("MMMM"));
+        }
+    }
+
+    private async void SetMonth(ChangeEventArgs args)
+    {
+        try
+        {
+            Int32.TryParse(args.Value!.ToString(), out int result);
+            selMonth = result == 0 ? 1 : result;
+            await DateChanged.InvokeAsync(new DateTime(selYear, selMonth, selDay));
+        }
+        catch
+        {
+            selDay = DateTime.DaysInMonth(selYear, selMonth);
+            await DateChanged.InvokeAsync(new DateTime(selYear, selMonth, selDay));
+        }
+    }
+
+    private async void SetDay(ChangeEventArgs args)
+    {
+        try
+        {
+            Int32.TryParse(args.Value!.ToString(), out int result);
+            selDay = result.Equals(0) ? 1 : result;
+            await DateChanged.InvokeAsync(new DateTime(selYear, selMonth, selDay));
+        }
+        catch
+        {
+            selDay = DateTime.DaysInMonth(selYear, selMonth);
+            await DateChanged.InvokeAsync(new DateTime(selYear, selMonth, selDay));
+        }
+    }
+
+    private async void SetYear(ChangeEventArgs args)
+    {
+        try
+        {
+            Int32.TryParse(args.Value!.ToString(), out int result);
+            selYear = result == 0 ? 1 : result;
+            await DateChanged.InvokeAsync(new DateTime(selYear, selMonth, selDay));
+        }
+        catch
+        {
+            selYear = DateTime.Now.Year;
+            await DateChanged.InvokeAsync(new DateTime(selYear, selMonth, selDay));
+        }
+    }
+}

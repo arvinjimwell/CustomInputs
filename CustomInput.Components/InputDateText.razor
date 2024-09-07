@@ -1,0 +1,27 @@
+@inherits InputBase<DateOnly>
+
+<div class="input-container @CssClass">
+    <input type="text" class="input" @bind="CurrentValue" placeholder="" @attributes=AdditionalAttributes />
+    <label class="label">@ChildContent</label>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    protected override bool TryParseValueFromString(string? value, out DateOnly result, out string validationErrorMessage)
+    {
+        try
+        {
+            result = DateOnly.Parse(value!);
+            validationErrorMessage = null!;
+            return true;
+        }
+        catch
+        {
+            result = DateOnly.Parse(DateTime.Now.ToString("MMM dd, yyyy"));
+            validationErrorMessage = "Invalid Input";
+            return false;
+        }
+    }
+}

@@ -1,0 +1,73 @@
+﻿.date-input {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    min-width: 200px;
+    margin-top: 10px;
+}
+
+* ::deep input, * ::deep select {
+    background: none;
+}
+
+.date-input .month-select,
+.date-input .input {
+    position: relative;
+    height: 50px;
+    background: none;
+}
+
+.date-input .input ::deep input,
+.date-input .month-select ::deep select{
+    padding: 0.9rem;
+    padding-bottom: 0.4rem;
+}
+
+.month-select label,
+.input label {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0 5px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.month-select select {
+    padding: 10px;
+    font-size: 14px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #625b4b;
+    border-radius: 5px;
+    outline: none;
+}
+
+.month-select select:focus {
+    border: 1px solid #FF9800;
+}
+
+.month-select select:focus ~ label {
+    color: #FF9800;
+}
+
+
+.input input {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #625b4b;
+    padding: 0 15px;
+    font-size: 14px;
+    outline: none;
+}
+
+.input input:focus {
+    border: 1px solid #FF9800;
+}
+
+.input input:focus ~ label {
+    color: #FF9800;
+}

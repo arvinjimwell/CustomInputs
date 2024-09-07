@@ -1,0 +1,27 @@
+@inherits InputBase<DateTime>
+
+<div class="input-container @CssClass">
+    <input type="text" class="input" @bind="CurrentValue" placeholder="" @attributes=AdditionalAttributes />
+    <label class="label">@ChildContent</label>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    protected override bool TryParseValueFromString(string? value, out DateTime result, out string validationErrorMessage)
+    {
+        try
+        {
+            result = DateTime.Parse(value!);
+            validationErrorMessage = null!;
+            return true;
+        }
+        catch
+        {
+            result = DateTime.Now;
+            validationErrorMessage = "Invalid Input";
+            return false;
+        }
+    }
+}

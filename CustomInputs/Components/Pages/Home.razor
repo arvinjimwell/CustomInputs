@@ -1,0 +1,32 @@
+﻿@page "/"
+@using CustomInput.Components
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app .
+
+@if(!string.IsNullOrEmpty(Name))
+{
+    <p>Hello @Name, welcome to the club!</p>
+    <p>Are you sure you are @age years old?</p>
+    <p>You are born on? @birthdate.ToString("MMM dd, yyyy")</p>
+}
+<p>Date: @textdate</p>
+<p>Color: @color</p>
+<CInputText @bind-Value="Name">Full Name</CInputText>
+<CInputNumber @bind-Value="age" >Age</CInputNumber>
+<CInputDate @bind-Date="birthdate" />
+<InputDateText @bind-Value="textdate">Date</InputDateText>
+
+<input type="color" @bind=color/>
+
+@code {
+    string Name = string.Empty;
+    int age = 0;
+    DateTime birthdate = DateTime.Now;
+    DateOnly textdate = DateOnly.MinValue;
+    string color = string.Empty;
+}

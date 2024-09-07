@@ -1,0 +1,30 @@
+@inherits InputBase<string?>
+
+<div class="input-container @CssClass">
+    <input type="@Type.ToString()" class="input" @bind="CurrentValue" placeholder="" 
+        disabled="@Disabled" @attributes=AdditionalAttributes />
+    <label class="label">@ChildContent</label>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+    [Parameter]
+    public InputType Type { get; set; } = InputType.text;
+    [Parameter]
+    public bool Disabled { get; set; } = false;
+
+    protected override bool TryParseValueFromString(string? value, out string? result, out string validationErrorMessage)
+    {
+        result = value;
+        validationErrorMessage = null!;
+        return true;
+    }
+
+    public enum InputType
+    {
+        text = 0b_0000_0000,
+        password = 0b_0000_0001,
+        email = 0b_0000_0010
+    }
+}
