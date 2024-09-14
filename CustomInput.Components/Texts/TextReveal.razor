@@ -1,0 +1,24 @@
+@inject IJSRuntime JSRuntime
+
+<p class="text-reveal" @ref=textReveal>
+    @for(int i = 0; i < textChar.Length; i++)
+    {
+        <span style="--time: @(i * 30)ms; --display: @(Char.IsWhiteSpace(textChar[i]) ? "inline" : "inline-block")">@textChar[i]</span>
+    }
+</p>
+
+@code {
+    [Parameter]
+    public required string Text { get; set; }
+
+    private char[] textChar = [];
+    private ElementReference textReveal;
+    private IJSObjectReference module = null!;
+
+    protected override async void OnInitialized()
+    {
+        textChar = Text.ToCharArray();
+        module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CustomInput.Components/Texts/TextReveal.razor.js");
+        await module.InvokeVoidAsync("addEvent", textReveal);
+    }
+}

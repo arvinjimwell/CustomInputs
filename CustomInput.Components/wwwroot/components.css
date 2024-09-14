@@ -1,6 +1,10 @@
 ﻿/*=====================================
     Input Styles
 ======================================*/
+* {
+    box-sizing: border-box;
+}
+
 .input-container {
     position: relative;
     height: 50px;

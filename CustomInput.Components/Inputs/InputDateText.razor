@@ -20,7 +20,7 @@
         catch
         {
             result = DateOnly.Parse(DateTime.Now.ToString("MMM dd, yyyy"));
-            validationErrorMessage = "Invalid Input";
+            validationErrorMessage = "Invalid date input.";
             return false;
         }
     }

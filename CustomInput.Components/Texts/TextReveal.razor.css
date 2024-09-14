@@ -1,0 +1,15 @@
+﻿.text-reveal span {
+    opacity: 0;
+    display: var(--display);
+    transform: translateY(-5px);
+    transition: all 0ms linear;
+    transition-delay: 0ms !important;
+    transition-duration: 0ms !important;
+}
+
+.text-reveal.view span {
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: var(--time) !important;
+    transition-duration: 100ms !important;
+}

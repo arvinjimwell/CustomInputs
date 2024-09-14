@@ -1,6 +1,6 @@
 @inherits InputBase<string?>
 
-<div class="input-container @CssClass">
+<div class="input-container">
     <input type="@Type.ToString()" class="input" @bind="CurrentValue" placeholder="" 
         disabled="@Disabled" @attributes=AdditionalAttributes />
     <label class="label">@ChildContent</label>
