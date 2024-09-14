@@ -361,3 +361,16 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/CustomInput.Blazor/CustomInput.Blazor.csproj
+/CustomInput.Blazor/wwwroot/app.css
+/CustomInput.Blazor/Components/Layout/MainLayout.razor
+/CustomInput.Blazor/Components/Layout/MainLayout.razor.css
+/CustomInput.Blazor/appsettings.json
+/CustomInput.Blazor/Components/App.razor
+/CustomInput.Blazor/Components/Pages/Error.razor
+/CustomInput.Blazor/Components/Pages/Home.razor
+/CustomInput.Blazor/Components/Routes.razor
+/CustomInput.Blazor/Components/_Imports.razor
+/CustomInput.Blazor/Program.cs
+/CustomInput.Blazor/appsettings.Development.json
+/CustomInput.Blazor/Properties/launchSettings.json
