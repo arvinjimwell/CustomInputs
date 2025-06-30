@@ -18,7 +18,7 @@
     protected override async void OnInitialized()
     {
         textChar = Text.ToCharArray();
-        module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/CustomInput.Components/Texts/TextReveal.razor.js");
+        module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/JAO.CustomComponent/Texts/TextReveal.razor.js");
         await module.InvokeVoidAsync("addEvent", textReveal);
     }
 }
