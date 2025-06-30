@@ -1,0 +1,25 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+
+<div class="container">
+    <TextReveal Text="@message" />
+    <TextReveal Text="@text" />
+</div>
+
+<h1>@CurrentDate</h1>
+<CInputDate @bind-Date="CurrentDate" />
+<h2>@currentDate</h2>
+<InputDateText @bind-Value="currentDate">Current Date</InputDateText>
+
+@code {
+    string message = "TextReveal Component";
+    string text = "A elegant text reveal animation for blazor component!";
+    DateTime CurrentDate { get; set; } = DateTime.Now;
+    DateOnly currentDate { get; set; } = DateOnly.FromDateTime(DateTime.Now);
+}

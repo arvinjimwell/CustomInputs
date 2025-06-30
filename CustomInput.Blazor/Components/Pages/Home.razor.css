@@ -1,0 +1,19 @@
+﻿* {
+    font-family: sans-serif;
+}
+
+.container {
+    background: #0d1117;
+    color: #f0f6fc;
+    padding: 15px;
+    width: 250px;
+}
+
+.container ::deep p:first-child span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.container ::deep p:last-child span {
+    font-size: 14px;
+}
