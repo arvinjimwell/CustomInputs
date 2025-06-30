@@ -374,3 +374,4 @@ FodyWeavers.xsd
 /CustomInput.Blazor/Program.cs
 /CustomInput.Blazor/appsettings.Development.json
 /CustomInput.Blazor/Properties/launchSettings.json
+/CustomInput.Blazor/Components/Pages/Home.razor.css
